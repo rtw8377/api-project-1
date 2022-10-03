@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { request } = require('http');
 
 const index = fs.readFileSync(`${__dirname}/../client/client.html`);
 const css = fs.readFileSync(`${__dirname}/../client/style.css`);
@@ -18,13 +17,13 @@ const getCSS = (request, response) => {
 };
 
 const getRecipe = (request, response) => {
-  response.writeHead(200, {'Content-Type': 'application/json' });
+  response.writeHead(200, { 'Content-Type': 'application/json' });
   response.write(recipe);
   response.end();
-}
+};
 
 module.exports = {
   getIndex,
   getCSS,
-  getRecipe
+  getRecipe,
 };

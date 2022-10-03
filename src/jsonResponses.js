@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 const users = JSON.parse(fs.readFileSync(`${__dirname}/../recipes.json`));
 
 const respondJSON = (request, response, status, object) => {
@@ -46,7 +47,6 @@ const addUser = (request, response, body) => {
   // add fields for the users name and age
   users[body.name].name = body.name;
   users[body.name].age = body.age;
-  fs.writeFile(`${__dirname}/../recipes.json`, JSON.stringify(user[body.name].name));
 
   // if the response includes the 201 status code, use this message response
   if (responseCode === 201) {
@@ -55,14 +55,6 @@ const addUser = (request, response, body) => {
   }
 
   return respondJSONMeta(request, response, responseCode);
-};
-
-const success = (request, response) => {
-  const object = {
-    message: 'Successful response',
-  };
-
-  return respond(request, response, 200, JSON.stringify(object), 'application/json');
 };
 
 // runs if the page could not be found
@@ -79,5 +71,4 @@ module.exports = {
   getUsers,
   addUser,
   notReal,
-  success
 };
